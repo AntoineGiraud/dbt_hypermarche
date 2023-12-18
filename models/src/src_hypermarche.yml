@@ -1,0 +1,12 @@
+sources:
+  - name: hypermarche
+    tables:
+      - name: achats
+        meta:
+          external_location: "read_csv('input/achats.csv', AUTO_DETECT=TRUE, header=true, all_varchar=true)"
+      - name: retours
+        meta:
+          external_location: "read_csv('input/retours.csv', AUTO_DETECT=TRUE, header=true, all_varchar=true)"
+      - name: personnes
+        meta:
+          external_location: "read_csv('input/personnes.csv', AUTO_DETECT=TRUE, header=true, all_varchar=true)"
