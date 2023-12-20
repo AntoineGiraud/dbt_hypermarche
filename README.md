@@ -37,7 +37,8 @@ Etapes:
 
 - `pip install dbt-duckdb` [doc](https://github.com/duckdb/dbt-duckdb)
 - `dbt init`  
-  *pour initialiser le fichier `~/.dbt/.profiles` [doc](https://docs.getdbt.com/docs/configure-your-profile)*
+  *pour un nouveau projet ou initialiser le fichier `~/.dbt/profiles.yml` [doc](https://docs.getdbt.com/docs/configure-your-profile)*  
+  *`C:\Users\zvw7159a\.dbt\profiles.yml` sur windows*
     - exemple config duckdb
         ``` yml
         exo_hypermarche_dbt:
