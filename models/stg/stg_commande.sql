@@ -1,4 +1,22 @@
-
-
-SELECT *
+SELECT
+	"ID ligne" id_ligne,
+	"ID commande" id_commande,
+	strptime("Date de commande", '%m/%d/%Y')::date dt_commande,
+	strptime("Date d'expédition", '%m/%d/%Y')::date dt_expedition,
+	"Statut commande" priorite,
+	"ID client" id_client,
+	"Nom du client" client_nom,
+	Segment client_segment,
+	Ville ville_nom,
+	Région ville_region,
+	Pays ville_pays,
+	"Zone géographique" ville_zone,
+	"ID produit" id_produit,
+	Catégorie produit_categorie,
+	"Sous-catégorie" produit_souscategorie,
+	"Nom du produit" produit_nom,
+	replace("Montant des ventes", ',', '.')::numeric montant_vente,
+	Quantité::int quantite,
+	replace(Remise, ',', '.')::numeric remise,
+	replace(Profit, ',', '.')::numeric profit
 FROM {{ ref('raw_achats') }}
