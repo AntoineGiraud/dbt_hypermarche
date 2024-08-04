@@ -1,4 +1,2 @@
-
-
-SELECT *
-FROM {{ ref('raw_achats') }}
+select *
+from {{ ref('raw_achats') }}
