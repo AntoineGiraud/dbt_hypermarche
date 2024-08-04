@@ -1,9 +1,11 @@
 [sqlfluff]
-dialect = postgres
+dialect = duckdb
 templater = dbt
 runaway_limit = 10
 max_line_length = 180
 indent_unit = space
+
+exclude_rules = structure.using, structure.column_order
 
 [sqlfluff:indentation]
 tab_space_size = 4

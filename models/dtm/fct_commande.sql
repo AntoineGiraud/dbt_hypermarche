@@ -1,15 +1,15 @@
 with cmd as (
     select
-        id_commande,
-        max(id_client) as id_client,
+        a.id_commande,
+        max(a.id_client) as id_client,
         max(v.id_ville) as id_ville,
-        max(dt_commande) as dt_commande,
-        max(dt_expedition) as dt_expedition,
-        max(priorite) as priorite,
-        count(id_produit) as nb_produits,
-        sum(quantite) as nb_articles,
-        sum(montant_vente) as montant_vente,
-        sum(profit) as profit
+        max(a.dt_commande) as dt_commande,
+        max(a.dt_expedition) as dt_expedition,
+        max(a.priorite) as priorite,
+        count(a.id_produit) as nb_produits,
+        sum(a.quantite) as nb_articles,
+        sum(a.montant_vente) as montant_vente,
+        sum(a.profit) as profit
     from {{ ref('stg_commande') }} as a
       left join {{ ref('dim_ville') }} as v
         on
@@ -28,7 +28,7 @@ select
     coalesce(r.est_retourne, 0) as est_retourne,
     cmd.dt_commande,
     cmd.dt_expedition,
-    date_diff('day', dt_expedition, dt_commande) as delai_expedition,
+    date_diff('day', cmd.dt_expedition, cmd.dt_commande) as delai_expedition,
     cmd.nb_produits,
     cmd.nb_articles,
     cmd.montant_vente,

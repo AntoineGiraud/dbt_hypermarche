@@ -8,7 +8,7 @@ with villes as (
 )
 
 select
-    ROW_NUMBER() over (order by "zone", pays, region, nom) as id_ville,
+    row_number() over (order by "zone", pays, region, nom) as id_ville,
     v.*,
     z.responsable
 from villes as v
