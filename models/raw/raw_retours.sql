@@ -1,4 +1,2 @@
-
-
-SELECT *
-FROM {{ source('hypermarche', 'retours') }}
+select *
+from {{ source('hypermarche', 'retours') }}
