@@ -12,11 +12,10 @@ with cmd as (
         sum(a.profit) as profit
     from {{ ref('stg_commande') }} as a
       left join {{ ref('dim_ville') }} as v
-        on
-            a.ville_nom = v.nom
-            and a.ville_region = v.region
-            and a.ville_pays = v.pays
-            and a.ville_zone = v."zone"
+        on v.nom = a.ville_nom
+            and v.region = a.ville_region
+            and v.pays = a.ville_pays
+            and v."zone" = a.ville_zone
     group by 1
 )
 

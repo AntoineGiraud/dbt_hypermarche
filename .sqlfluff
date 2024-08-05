@@ -4,18 +4,18 @@ templater = dbt
 runaway_limit = 10
 max_line_length = 180
 indent_unit = space
+sql_file_exts = ".sql,.sqlx"
 
-exclude_rules = structure.using, structure.column_order
+exclude_rules = structure.using, structure.column_order, layout.long_lines
 
 [sqlfluff:indentation]
 tab_space_size = 4
+indented_joins = True
+allow_implicit_indents = True
 
 [sqlfluff:layout:type:comma]
 spacing_before = touch
 line_position = trailing
-
-[sqlfluff:rules:capitalisation.keywords]
-capitalisation_policy = lower
 
 [sqlfluff:rules:aliasing.table]
 aliasing = explicit
@@ -26,11 +26,18 @@ aliasing = explicit
 [sqlfluff:rules:aliasing.expression]
 alow_scalar = False
 
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+
 [sqlfluff:rules:capitalisation.identifiers]
 extended_capitalisation_policy = lower
 
 [sqlfluff:rules:capitalisation.functions]
 capitalisation_policy = lower
+extended_capitalisation_policy = lower
 
 [sqlfluff:rules:capitalisation.literals]
 capitalisation_policy = lower
+
+[sqlfluff:rules:structure.join_condition_order]
+preferred_first_table_in_join_clause = later
