@@ -45,3 +45,8 @@ models:
     dtm:
       +schema: dtm
       +tags: [dtm]
+
+seeds:
+  +schema: raw_hypermarche
+  +enabled: false
+  +delimiter: ";"
