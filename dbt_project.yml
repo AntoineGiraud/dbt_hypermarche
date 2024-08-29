@@ -31,9 +31,9 @@ clean-targets: # directories to be removed by `dbt clean`
 models:
   dbt_hypermarche:
     +materialized: table
-    # +persist_docs:
-    #   relation: true
-    #   columns: true
+    +persist_docs:
+      relation: true
+      columns: true
     raw:
       +schema: raw
       +tags: [raw]
