@@ -13,7 +13,7 @@ profile: "dbt_hypermarche"
 # found in the "models/" directory. You probably won't need to change these!
 model-paths: ["models"]
 analysis-paths: ["analyses"]
-test-paths: ["tests"]
+test-paths: ["data_tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
@@ -43,3 +43,7 @@ models:
     dtm:
       +schema: dtm
       +tags: [dtm]
+# seeds:
+#  +schema: raw
+#  +enabled: false
+#  +delimiter: ";"
