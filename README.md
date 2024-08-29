@@ -21,32 +21,32 @@ Etapes:
 
 ## Commandes dbt importantes
 
-- `dbt compile`  
+- `dbt compile`
   Voir si nos scripts sont valides
-- `dbt build`  
-  Pour déployer nos scripts dans la BDD  
+- `dbt build`
+  Pour déployer nos scripts dans la BDD
   équivalent de dbt run + dbt test
-- `dbt docs generate`  
+- `dbt docs generate`
   Pour préparer la documentation
-- `dbt docs serve`  
+- `dbt docs serve`
   Pour lancer un serveur web pour explorer la doc & le lineage
-- `dbt build -s +stg_commande+`  
+- `dbt build -s +stg_commande+`
   Pour déployer tout avant & après la table stg_commande
 
 ## Installation & config manuelle de DBT
 
 - `pip install dbt-duckdb` [doc](https://github.com/duckdb/dbt-duckdb)
-- `dbt init`  
-  *pour un nouveau projet ou initialiser le fichier `~/.dbt/profiles.yml` [doc](https://docs.getdbt.com/docs/configure-your-profile)*  
+- `dbt init`
+  *pour un nouveau projet ou initialiser le fichier `~/.dbt/profiles.yml` [doc](https://docs.getdbt.com/docs/configure-your-profile)*
   *`C:\Users\zvw7159a\.dbt\profiles.yml` sur windows*
     - exemple config duckdb
         ``` yml
-        exo_hypermarche_dbt:
+        dbt_hypermarche:
           target: dev
           outputs:
             dev:
               type: duckdb
-              path: hypermarche.db
+              path: dbt_hypermarche.db
               extensions: # si besoin
                 # - httpfs
                 # - spatial
@@ -65,7 +65,7 @@ Etapes:
               port: 5432
               database: postgres
               schema: dbt_test
-        ```        
+        ```
 - préparer les dossier/étapes dans `models`
   - `src` : 1 fichier `.yml` par source (ex: `src_hypermarche.yml`)
   - `raw` : normalement, on ne gère pas trop l'ingestion avec DBT O:) car la BDD ne le permet pas souvent
@@ -77,7 +77,7 @@ Etapes:
     par exemple:
     ``` yml
     models:
-      exo_hypermarche_dbt:
+      dbt_hypermarche:
         dtm:
           +materialized: table
           +schema: dtm
