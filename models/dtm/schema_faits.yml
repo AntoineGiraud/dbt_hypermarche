@@ -2,10 +2,10 @@ version : 2
 
 models:
   - name: dim_client
-    description: 'la dimension des clients'
+    description: 'Dimension des clients'
     columns:
       - name: id_client
-        description: 'mon super id client'
+        description: 'id du client'
         tests: [unique, not_null]
   - name: dim_produit
     description: 'la dimension des produits'

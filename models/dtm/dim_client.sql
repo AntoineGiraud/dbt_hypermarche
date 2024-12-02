@@ -1,3 +1,8 @@
+{{ config(
+  materialized = 'table',
+  grants = {'roles/bigquery.dataViewer': ['user:antoine.giraud@keyrus.com']}
+) }}
+
 select distinct
     id_client,
     client_nom as nom,
