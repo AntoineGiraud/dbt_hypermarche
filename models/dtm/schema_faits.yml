@@ -6,14 +6,20 @@ models:
     columns:
       - name: id_client
         description: 'id du client'
-        tests: [unique, not_null]
+        data_tests: [unique, not_null]
   - name: dim_produit
     description: 'la dimension des produits'
     columns:
       - name: id_produit
-        tests: [unique, not_null]
+        data_tests: [unique, not_null]
   - name: dim_ville
     description: 'la dimension des villes'
     columns:
       - name: id_ville
-        tests: [unique, not_null]
+        data_tests:
+          - not_null
+          - unique:
+              config:
+                severity: error
+                error_if: ">1000"
+                warn_if: ">10"

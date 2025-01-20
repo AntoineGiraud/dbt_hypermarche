@@ -52,9 +52,9 @@ Etapes:
                 # - spatial
               threads: 2
         ```
-    - exemple config postgresql
+    - exemple config BigQuery
         ``` yml
-        dbt_test_ag:
+        dbt_hypermarche_bigquery:
           target: dev
           outputs:
             dev:

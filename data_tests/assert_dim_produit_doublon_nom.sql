@@ -1,7 +1,4 @@
-{{ config(
-    severity = 'warn'
-) }}
-
+{{ config( severity = 'warn' ) }}
 
 SELECT id_produit, count(1) nb
 FROM {{ ref('stg_commande') }}

@@ -1,3 +1,7 @@
+{{ config(
+  post_hook = "{{ refresh_tableau('dim_ville') }}"
+) }}
+
 with villes as (
     select distinct
         ville_nom as nom,
