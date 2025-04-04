@@ -1,7 +1,7 @@
 select version();
 
 -- ctrl + enter dans dbeaver --> execute les lignes qui se touchent jq'au prochain ;
-set VARIABLE path_input = 'C:\Users\antoine.giraud\Documents\code\dbt_hypermarche\input\';
+set VARIABLE path_input = '~\Documents\code\dbt_hypermarche\input\';
 SELECT getvariable('path_input');
 
 
