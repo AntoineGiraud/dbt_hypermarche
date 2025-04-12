@@ -3,10 +3,10 @@ sources:
     tables:
       - name: achats
         meta:
-          external_location: "read_csv('~/Documents/code/dbt_hypermarche/input/achats.csv', AUTO_DETECT=TRUE, header=true, all_varchar=true)"
+          external_location: "read_csv('https://github.com/AntoineGiraud/dbt_hypermarche/raw/refs/heads/main/input/achats.csv', header=true, all_varchar=true)"
       - name: retours
         meta:
-          external_location: "read_csv('~/Documents/code/dbt_hypermarche/input/retours.csv', AUTO_DETECT=TRUE, header=true, all_varchar=true)"
+          external_location: "read_csv('https://github.com/AntoineGiraud/dbt_hypermarche/raw/refs/heads/main/input/retours.csv', header=true, all_varchar=true)"
       - name: personnes
         meta:
-          external_location: "read_csv('~/Documents/code/dbt_hypermarche/input/personnes.csv', AUTO_DETECT=TRUE, header=true, all_varchar=true)"
+          external_location: "read_csv('https://github.com/AntoineGiraud/dbt_hypermarche/raw/refs/heads/main/input/personnes.csv', header=true, all_varchar=true)"

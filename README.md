@@ -48,7 +48,7 @@ Etapes:
               type: duckdb
               path: dbt_hypermarche.db
               extensions: # si besoin
-                # - httpfs
+                - httpfs
                 # - spatial
               threads: 2
         ```
