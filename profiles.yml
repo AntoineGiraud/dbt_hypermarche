@@ -1,0 +1,10 @@
+dbt_hypermarche:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: dbt_hypermarche.db
+      extensions: # si besoin
+        - httpfs
+        # - spatial
+      threads: 2
