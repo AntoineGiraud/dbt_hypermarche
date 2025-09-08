@@ -1,12 +1,8 @@
 sources:
   - name: hypermarche
+    database: BIKESHARE
+    schema: bronze
     tables:
       - name: achats
-        meta:
-          external_location: "read_csv('https://github.com/AntoineGiraud/dbt_hypermarche/raw/refs/heads/main/input/achats.csv', header=true, all_varchar=true)"
       - name: retours
-        meta:
-          external_location: "read_csv('https://github.com/AntoineGiraud/dbt_hypermarche/raw/refs/heads/main/input/retours.csv', header=true, all_varchar=true)"
       - name: personnes
-        meta:
-          external_location: "read_csv('https://github.com/AntoineGiraud/dbt_hypermarche/raw/refs/heads/main/input/personnes.csv', header=true, all_varchar=true)"
