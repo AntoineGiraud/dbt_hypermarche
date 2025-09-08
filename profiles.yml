@@ -1,0 +1,17 @@
+dbt_hypermarche:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: dbt_hypermarche.db
+      extensions: # si besoin
+        - httpfs
+        # - spatial
+      threads: 2
+    dev_snow:
+      account: xxx-xxx
+      type: snowflake
+      role: BIKESHARE_TRANSFORMER
+      warehouse: BIKESHARE_TRANSFORMING_WH
+      database: BIKESHARE
+      schema: SILVER
