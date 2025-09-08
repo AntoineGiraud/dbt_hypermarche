@@ -34,15 +34,12 @@ models:
     +persist_docs:
       relation: true
       columns: true
-    raw:
-      +schema: raw
-      +tags: [raw]
     stg:
       +materialized: view
-      +schema: stg
+      +schema: SILVER
       +tags: [stg]
     dtm:
-      +schema: dtm
+      +schema: GOLD
       +tags: [dtm]
 # seeds:
 #  +schema: raw
