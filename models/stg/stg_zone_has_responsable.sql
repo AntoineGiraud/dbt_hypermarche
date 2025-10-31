@@ -1,4 +1,4 @@
 select
     "Zone géographique" as "zone",
     "Responsable régional" as responsable
-from {{ source('hypermarche', 'personnes') }}
+from {{ source('hypermarche', 'raw_hypermarche_personnes') }}

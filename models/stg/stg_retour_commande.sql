@@ -1,4 +1,4 @@
-select
-    "ID commande" as id_commande,
-    replace("Retourné", 'Oui', 1)::int as est_retourne
-from {{ source('hypermarche', 'retours') }}
+SELECT
+	"ID commande" id_commande,
+	replace("Retourné", 'Oui', 1)::int est_retourne
+from {{ source('hypermarche', 'raw_hypermarche_retours') }}

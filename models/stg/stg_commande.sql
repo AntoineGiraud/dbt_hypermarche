@@ -1,6 +1,22 @@
-select
-    * replace (
-        strptime("Date de commande", '%m/%d/%Y')::date as "Date de commande",
-        replace(Profit, ',', '.')::numeric as Profit
-    )
-from {{ source('hypermarche', 'achats') }}
+SELECT
+  "ID ligne" AS id_ligne,
+  "ID commande" AS id_commande,
+  CAST(to_timestamp("Date de commande", 'mm/DD/yyyy') AS DATE) AS dt_commande,
+  CAST(to_timestamp("Date d'expédition", 'mm/DD/yyyy') AS DATE) AS dt_expedition,
+  "Statut commande" AS priorite,
+  "ID client" AS id_client,
+  "Nom du client" AS client_nom,
+  "Segment" AS client_segment,
+  "Ville" AS ville_nom,
+  "Région" AS ville_region,
+  "Pays" AS ville_pays,
+  "Zone géographique" AS ville_zone,
+  "ID produit" AS id_produit,
+  "Catégorie" AS produit_categorie,
+  "Sous-catégorie" AS produit_souscategorie,
+  "Nom du produit" AS produit_nom,
+  CAST(replace("Montant des ventes", ',', '.') AS DECIMAL(18, 3)) AS montant_vente,
+  CAST("Quantité" AS INT) AS quantite,
+  CAST(replace("Remise", ',', '.') AS DECIMAL(18, 3)) AS remise,
+  CAST(replace("Profit", ',', '.') AS DECIMAL(18, 3)) AS profit
+from {{ source('hypermarche', 'raw_hypermarche_achats') }}
