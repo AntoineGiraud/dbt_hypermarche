@@ -3,6 +3,6 @@ sources:
     database: BIKESHARE
     schema: bronze
     tables:
-      - name: achats
-      - name: retours
-      - name: personnes
+      - name: raw_hypermarche_achats
+      - name: raw_hypermarche_retours
+      - name: raw_hypermarche_personnes

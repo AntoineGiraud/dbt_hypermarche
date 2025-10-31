@@ -1,17 +1,20 @@
 dbt_hypermarche:
-  target: dev
+  target: dev_snow
   outputs:
     dev:
       type: duckdb
+      threads: 2
       path: dbt_hypermarche.db
       extensions: # si besoin
         - httpfs
         # - spatial
-      threads: 2
     dev_snow:
-      account: xxx-xxx
       type: snowflake
+      threads: 4
+      account: xxx-xxx
       role: BIKESHARE_TRANSFORMER
       warehouse: BIKESHARE_TRANSFORMING_WH
       database: BIKESHARE
       schema: SILVER
+      private_key_path: "C:/Users/antoi/.ssh/key_transformer"
+      user: TRANSFORMER_PC_AG_IPPON
