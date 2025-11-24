@@ -30,6 +30,9 @@ clean-targets: # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   dbt_hypermarche:
+    +database: |
+        {%- if target.name == "prod"  -%} BIKESHARE
+        {%- else -%} BIKESHARE_DEV {%- endif -%}
     +materialized: table
     +persist_docs:
       relation: true
@@ -41,6 +44,7 @@ models:
     dtm:
       +schema: GOLD
       +tags: [dtm]
+
 # seeds:
 #  +schema: raw
 #  +enabled: false
