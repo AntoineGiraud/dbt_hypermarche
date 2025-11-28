@@ -205,7 +205,7 @@ wheels = [
 
 [[package]]
 name = "dbt-duckdb"
-version = "1.9.4"
+version = "1.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dbt-adapters" },
@@ -213,9 +213,9 @@ dependencies = [
     { name = "dbt-core" },
     { name = "duckdb" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/23/ec/30497ba442071b0ffccb9332f3f5454bd9bed32e01fb0ef83f44155dfb6d/dbt_duckdb-1.9.4.tar.gz", hash = "sha256:7e64f28bbcf99abfb3e493303d5261b07fdc7381be97338450f326dce2980521", size = 111408, upload-time = "2025-06-25T18:39:54.617Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d7/a3/1286f14a03b3475a5349139e200d6522eed4d6b41932245df6d9bf401eb8/dbt_duckdb-1.10.0.tar.gz", hash = "sha256:9da9603840f153a5713991553748ba89084930a83fe8a7936cd65b006b70c3ee", size = 139822, upload-time = "2025-11-05T15:08:59.679Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9c/79/57012a949783f2fb11ba01e480239de5d8679891651518eb18447cf1645b/dbt_duckdb-1.9.4-py3-none-any.whl", hash = "sha256:b3e8ea0f1fc38fe5b1b881c181174b3d701475695312ff724dc65015bceca5da", size = 72088, upload-time = "2025-06-25T18:39:53.087Z" },
+    { url = "https://files.pythonhosted.org/packages/91/32/62d2b3e98a6d76fe541e8299e60a35a75f1ee46b28bacf43a46fcc192713/dbt_duckdb-1.10.0-py3-none-any.whl", hash = "sha256:8bfc534d6e2eb732af5bda2e5681b70f5159e4adb52bdc8ef0dbe911c1314334", size = 82889, upload-time = "2025-11-05T15:08:57.963Z" },
 ]
 
 [[package]]
@@ -250,7 +250,7 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "dbt-duckdb", specifier = ">=1.9.4" }]
+requires-dist = [{ name = "dbt-duckdb", specifier = ">=1.10.0" }]
 
 [[package]]
 name = "dbt-protos"

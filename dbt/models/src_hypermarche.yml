@@ -1,0 +1,8 @@
+sources:
+  - name: hypermarche
+    meta:
+      external_location: "read_csv('https://github.com/AntoineGiraud/dbt_hypermarche/raw/refs/heads/main/input/{name}.csv', header=true, all_varchar=true)"
+    tables:
+      - name: achats
+      - name: retours
+      - name: personnes
