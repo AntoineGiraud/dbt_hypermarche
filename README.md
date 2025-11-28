@@ -1,30 +1,46 @@
-# Industrialisation de l'enrichissement de données hypermarché 🛒
+# Industrialisation données hypermarché 🛒
 
 ## Objectif & mission
 
-🎯 **Objectif** : Industrialiser, à l'aide de dbt, les transformations SQL préparées dans le TD1 sur nos données d'hypermarché (dossier `input`).
+### 🎯 Objectif
+Apprenez à transformer et industrialiser vos données avec **dbt** : un outil qui orchestre & rend vos requêtes SQL reproductibles, testées et documentées.
 
-**TODO**
-- Cloner & préparer votre poste (cf. [Installation](#installation))
-- Lancer un 1er `dbt build` & corriger ces 1ères erreurs (cf. [commandes dbt](#commandes-dbt-importantes))
-- Transférer les req SQL du TD1 (`./input/`) dans le projet dbt <em style="color:lightgrey">- 1 model = 1 .sql, sans ;  à la fin</em>
-- Commencer à documenter les tables/colonnes & hypothèses prises `{_sources|_models}.yml`
-- Ajouter des tests techniques (pk, not null) & fonctionnels (règles métiers particulières) pour confirmer nos hypothèses de modélisation
-- Explorer le catalogue & lineage de dbt-core `dbt docs generate`
+### 🚀 Étapes du projet
+
+1. **Cloner & préparer votre poste** *→ cf. [Installation](#installation)*
+2. **Lancer un 1er `dbt build`** *→ comprendre et corriger les erreurs (cf. [commandes dbt](#commandes-dbt-importantes))*
+3. **Migrer** vos requêtes SQL du TD1 (`input/`) *→ 1 model = 1 .sql (sans ;) (`dbt/models/xxx/`)*
+4. **Documenter** vos tables & colonnes *→ fichiers `{_sources|_models}.yml`*
+5. **Ajouter des tests** techniques (pk, not null) & fonctionnels (règles métiers)
+6. **Explorer la documentation** et le lineage → `dbt docs generate` + `dbt docs serve`
+
+![hypermarche_flux_donnees](./hypermarche_flux_donnees.png)
 
 ## Resources
 
-### Docs & eLearning
+### Continuer de se former
 
-- Follow [dbt-fundamentals](https://learn.getdbt.com/courses/dbt-fundamentals-vs-code) tutorial
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
+- Suivre le tutoriel/badge [dbt-fundamentals](https://learn.getdbt.com/courses/dbt-fundamentals-vs-code)
+- Consulter la [doc dbt](https://docs.getdbt.com/docs/introduction)
+  ex:
+  - [how we structure](https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview) our dbt projects
+  - jouer avec le projet [jaffle-shop](https://github.com/dbt-labs/jaffle_shop_duckdb) ([guide](https://docs.getdbt.com/guides/duckdb?step=3))
+- Alimenter sa veille & suivre sur LinkedIn
+  - [Bruno Lima](https://www.linkedin.com/in/brunoszdl/) → partage bcp sur dbt
+  - [Christophe Blefari](https://www.linkedin.com/in/christopheblefari/) → son regard critique sur la data ([newsletter](https://www.blef.fr/), [nao](https://getnao.io/))
+  - [Robin Conquet](https://www.linkedin.com/in/robin-conquet-3a510292/) aka [DataGen](https://www.youtube.com/@data-gen) & ses podcast stratégie data
+- Creuser plus loin
+  - Faire les [autres eLearning dbt](https://learn.getdbt.com/courses)
+  - Essayer un **quick start** dbt ?
+  - lire [Continuous integration in dbt](https://docs.getdbt.com/docs/deploy/continuous-integration) → avancé
+  - lire [Using defer in dbt](https://docs.getdbt.com/docs/cloud/about-cloud-develop-defer) → avancé
 
 ### Outils
 
 - [**dbt-core**](https://github.com/dbt-labs/dbt-core) enables data analysts and engineers to transform their data using the same practices that software engineers use to build applications.\
   ![dbt-core](https://github.com/dbt-labs/dbt-core/raw/202cb7e51e218c7b29eb3b11ad058bd56b7739de/etc/dbt-transform.png)
-- [**git**](https://git-scm.com/install/windows) *version control system*
-- [**VS Code**](https://code.visualstudio.com/) éditeur de code
+- [**git**](https://git-scm.com/install/windows) *gestion de versions*
+- [**VS Code**](https://code.visualstudio.com/) *éditeur de code*
   - [Power User for dbt](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user)
   - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 - [**uv**](https://github.com/astral-sh/uv) extremely fast Python package & project manager, written in Rust.
@@ -37,10 +53,10 @@
 
 - [git](https://git-scm.com/install/windows) ou
   `winget install --id Git.Git -e --source winget`
-  - Dire à **git** qui nous sommes
+  - Dire à **git** qui vous êtes
     ```shell
-    git config --global user.name "AntoineGiraud"
-    git config --global user.email antoine.giraud@domaine.fr
+    git config --global user.name "PrenomNom"
+    git config --global user.email votresuper@email.fr
     ```
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) ou
   `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
@@ -51,10 +67,10 @@
 #### Clone & setup local du projet
 
 - `git clone https://github.com/AntoineGiraud/dbt_hypermarche.git`
-- `cd dbt_hypermarche`
+- `cd dbt_hypermarche` <em style="color: grey">se déplacer dans le dossier récupéré avec git</em>
 - `uv sync`
-  - télécharge **python**
-  - initialise un environnement virtuel python (venv)
+  - télécharge **python** <em style="color: grey">si non présent</em>
+  - initialise un environnement virtuel python (venv) <em style="color: grey">si non présent</em>
   - télécharge les dépendances / extensions python
 - `.venv/Scripts/activate.ps1` (unix `source .venv/bin/activate`)\
   rendre **dbt** disponible dans le terminal
@@ -62,12 +78,14 @@
 
 ### Commandes dbt importantes
 
-- `dbt ls` liste les modèles disponibles
-- `dbt parse` vérifie la syntaxe et la validité des modèles
-- `dbt compile` génère les requêtes SQL à partir des modèles
-- `dbt build` exécute modèles + tests (équivalent `run` + `test`)
-  - `dbt build -s +stg_commande+` construit tout ce qui précède / suit `stg_commande`
-  - `dbt run` exécute les modèles sans tests
-  - `dbt test` lance uniquement les tests sur les modèles déployés
-- `dbt docs generate` génère la documentation du projet
-  - `dbt docs serve` démarre un serveur web pour explorer la doc & le lineage
+| Commande | Rôle |
+|----------|------|
+| `dbt ls` | Liste les modèles |
+| `dbt parse` | Vérifie syntaxe et validité |
+| `dbt compile` | Génère SQL à partir des modèles |
+| `dbt run` | Exécute les modèles (sans tests) |
+| `dbt test` | Lance uniquement les tests |
+| `dbt build` | Exécute modèles + tests |
+| `dbt build -s +stg_commande+` | Construit `stg_commande` + parent & enfants |
+| `dbt docs generate` | Génère la documentation |
+| `dbt docs serve` | Lance un serveur web pour explorer doc & lineage |
