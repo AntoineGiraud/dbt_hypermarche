@@ -4,5 +4,8 @@ sources:
       external_location: "read_csv('https://github.com/AntoineGiraud/dbt_hypermarche/raw/refs/heads/main/input/{name}.csv', header=true, all_varchar=true)"
     tables:
       - name: achats
+        description: Liste des commandes & du détail des articles
       - name: retours
+        description: Commandes retournées par les clients
       - name: personnes
+        description: Responsable région

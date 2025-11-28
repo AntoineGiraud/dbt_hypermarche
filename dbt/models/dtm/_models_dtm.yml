@@ -2,18 +2,19 @@ version : 2
 
 models:
   - name: dim_client
-    description: 'la dimension des clients'
+    description: la dimension des clients
     columns:
       - name: id_client
-        description: 'mon super id client'
+        description: mon super id client
         tests: [unique, not_null]
   - name: dim_produit
-    description: 'la dimension des produits'
+    description: la dimension des produits
     columns:
       - name: id_produit
         tests: [unique, not_null]
   - name: dim_ville
-    description: 'la dimension des villes'
+    description: la dimension des villes
     columns:
       - name: id_ville
         tests: [unique, not_null]
+  # à compléter

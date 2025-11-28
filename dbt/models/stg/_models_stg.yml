@@ -1,0 +1,13 @@
+version : 2
+
+models:
+  - name: stg_commande
+    description: 'la dimension des clients'
+    columns:
+      - name: id_commande
+        description: 'mon super id client'
+        tests:
+          - not_null
+          - unique # vraiment ??
+
+  # à compléter
