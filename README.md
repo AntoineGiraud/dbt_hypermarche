@@ -18,7 +18,19 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
 
 ## Resources
 
-### Continuer de se former
+### Outils
+
+- [**dbt-core**](https://github.com/dbt-labs/dbt-core) enables data analysts and engineers to transform their data using the same practices that software engineers use to build applications.\
+  ![dbt-core](https://github.com/dbt-labs/dbt-core/raw/202cb7e51e218c7b29eb3b11ad058bd56b7739de/etc/dbt-transform.png)
+- [**git**](https://git-scm.com/install/windows) *gestion de versions*
+- [**VS Code**](https://code.visualstudio.com/) *éditeur de code*
+  - [Power User for dbt](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user)
+  - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+- [**uv**](https://github.com/astral-sh/uv) extremely fast Python package & project manager, written in Rust.
+- [**DuckDB**](https://duckdb.org/) analytical in-process SQL database
+- [**DBeaver**](https://dbeaver.io/) Database Management Tool
+
+### Se former à dbt & l'Analytics Engineering
 
 - Suivre le tutoriel/badge [dbt-fundamentals](https://learn.getdbt.com/courses/dbt-fundamentals-vs-code)
 - Consulter la [doc dbt](https://docs.getdbt.com/docs/introduction)
@@ -34,18 +46,6 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
   - Essayer un **quick start** dbt ?
   - lire [Continuous integration in dbt](https://docs.getdbt.com/docs/deploy/continuous-integration) → avancé
   - lire [Using defer in dbt](https://docs.getdbt.com/docs/cloud/about-cloud-develop-defer) → avancé
-
-### Outils
-
-- [**dbt-core**](https://github.com/dbt-labs/dbt-core) enables data analysts and engineers to transform their data using the same practices that software engineers use to build applications.\
-  ![dbt-core](https://github.com/dbt-labs/dbt-core/raw/202cb7e51e218c7b29eb3b11ad058bd56b7739de/etc/dbt-transform.png)
-- [**git**](https://git-scm.com/install/windows) *gestion de versions*
-- [**VS Code**](https://code.visualstudio.com/) *éditeur de code*
-  - [Power User for dbt](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user)
-  - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
-- [**uv**](https://github.com/astral-sh/uv) extremely fast Python package & project manager, written in Rust.
-- [**DuckDB**](https://duckdb.org/) analytical in-process SQL database
-- [**DBeaver**](https://dbeaver.io/) Database Management Tool
 
 ### Installation
 

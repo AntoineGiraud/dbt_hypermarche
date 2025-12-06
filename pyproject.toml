@@ -1,7 +1,7 @@
 [project]
 name = "dbt-hypermarche"
 version = "0.1.0"
-description = "Add your description here"
+description = "Industrialisation données hypermarché 🛒 avec dbt"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -17,5 +17,4 @@ dev = [
 ]
 
 [tool.sqlfmt]
-exclude=["target/**/*", "dbt_packages/**/*"]
-
+exclude=["dbt/target/**/*", "dbt/dbt_packages/**/*"]
