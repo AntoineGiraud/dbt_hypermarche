@@ -1,0 +1,21 @@
+version: 2
+
+exposures:
+  - name: weekly_order_recap
+    label: Orders operationnal dashboard
+    type: dashboard
+    maturity: low
+    url: https://bi.tool/dashboards/1
+    description: >
+      My super order's operationnal dashboard
+
+    depends_on:
+      - ref('fct_commande')
+      - ref('fct_commande_has_produit')
+      - ref('dim_client')
+      - ref('dim_produit')
+      - ref('dim_ville')
+
+    owner:
+      name: Antoine Giraud
+      email: antoine@giraud.fr
