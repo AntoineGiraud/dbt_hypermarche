@@ -6,17 +6,17 @@ select
     "Statut commande" as priorite,
     "ID client" as id_client,
     "Nom du client" as client_nom,
-    Segment as client_segment,
-    Ville as ville_nom,
-    Région as ville_region,
-    Pays as ville_pays,
+    segment as client_segment,
+    ville as ville_nom,
+    région as ville_region,
+    pays as ville_pays,
     "Zone géographique" as ville_zone,
     "ID produit" as id_produit,
-    Catégorie as produit_categorie,
+    catégorie as produit_categorie,
     "Sous-catégorie" as produit_souscategorie,
     "Nom du produit" as produit_nom,
     replace("Montant des ventes", ',', '.')::numeric as montant_vente,
-    Quantité::int as quantite,
-    replace(Remise, ',', '.')::numeric as remise,
-    replace(Profit, ',', '.')::numeric as profit
-from {{ source('hypermarche', 'achats') }}
+    quantité::int as quantite,
+    replace(remise, ',', '.')::numeric as remise,
+    replace(profit, ',', '.')::numeric as profit
+from {{ source("hypermarche", "achats") }}
