@@ -51,4 +51,5 @@ SELECT
 	profit,
 	(montant_vente/quantite) prix_unitaire,
 	(montant_vente/quantite) * (1+remise) prix_unitaire_avant_remise
-FROM hypermarche.stg.stg_commande;
+FROM stg.stg_commande;
+

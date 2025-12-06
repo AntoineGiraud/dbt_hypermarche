@@ -1,8 +1,11 @@
 
+# artefacts dbt
 target/
 dbt_packages/
 logs/
+
 *.db
-*.parquet
-.vscode/settings.json
-.user.yml
+*.db.wal
+
+# artefacts projet uv / python
+.venv/

@@ -23,12 +23,14 @@ with villes as (
 	FROM stg.stg_commande
 )
 select
-	ROW_NUMBER() over(order by "zone", pays, region, nom) id_ville,
+	ROW_NUMBER() over(order by "zone", pays, region, nom) as id_ville,
+	md5(concat("zone", '||', pays, '||', region, '||', nom)) as cd_ville,
 	v.*,
 	z.responsable
 from villes v
   left join stg.stg_zone_has_responsable z using("zone")
 order by id_ville;
+
 
 -- explo dim
 select
@@ -40,7 +42,7 @@ from dtm.dim_ville;
 -- analyse villes en doublon
 with double_ville as (
 	SELECT nom, count(1) nb
-	FROM hypermarche.dtm.dim_ville
+	FROM dtm.dim_ville
 	group by 1
 	having count(1)>1
 )

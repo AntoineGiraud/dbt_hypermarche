@@ -19,4 +19,4 @@ select
     Quantité::int as quantite,
     replace(Remise, ',', '.')::numeric as remise,
     replace(Profit, ',', '.')::numeric as profit
-from {{ ref('raw_achats') }}
+from {{ source('hypermarche', 'achats') }}

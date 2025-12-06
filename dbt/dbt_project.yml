@@ -38,6 +38,7 @@ models:
       +schema: raw
       +tags: [raw]
     stg:
+      +materialized: view
       +schema: stg
       +tags: [stg]
     dtm:
