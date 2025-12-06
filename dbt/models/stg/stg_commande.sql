@@ -1,6 +1,6 @@
 select
     * replace (
         strptime("Date de commande", '%m/%d/%Y')::date as "Date de commande",
-        replace(Profit, ',', '.')::numeric as Profit
+        replace(profit, ',', '.')::numeric as profit
     )
-from {{ source('hypermarche', 'achats') }}
+from {{ source("hypermarche", "achats") }}

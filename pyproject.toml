@@ -9,3 +9,13 @@ dependencies = [
     "faker>=38.2.0",
     "polars>=1.35.2",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.8",
+    "shandy-sqlfmt[jinjafmt]>=0.28.2",
+]
+
+[tool.sqlfmt]
+exclude=["target/**/*", "dbt_packages/**/*"]
+
