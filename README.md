@@ -87,7 +87,6 @@ Norme [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) : `<
 | **test** | ajout/modif de tests|  <em style="color: grey"> tests unitaires user</em> |
 | **chore** | maintenance/config sans impact fonctionnel |   <em style="color: grey"> mise à jour dépendances, script CI</em> |
 
-
 ### Installation
 
 #### Récupérer les outils
