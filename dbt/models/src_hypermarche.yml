@@ -4,5 +4,8 @@ sources:
     schema: bronze
     tables:
       - name: raw_hypermarche_achats
+        description: Liste des commandes & du détail des articles
       - name: raw_hypermarche_retours
+        description: Commandes retournées par les clients
       - name: raw_hypermarche_personnes
+        description: Responsable région

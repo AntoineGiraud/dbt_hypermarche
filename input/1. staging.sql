@@ -1,7 +1,6 @@
-CREATE schema IF NOT EXISTS stg;
-
+-- CREATE schema IF NOT EXISTS stg;
 create or replace table stg.stg_commande as
-SELECT
+select
 	"ID ligne" id_ligne,
 	"ID commande" id_commande,
 	strptime("Date de commande", '%m/%d/%Y')::date dt_commande,
@@ -27,15 +26,17 @@ FROM raw.raw_achats;
 
 -- table des retours
 create or replace table stg.stg_retour_commande as
-SELECT
+select
 	"ID commande" id_commande,
 	replace("Retourné", 'Oui', 1)::int est_retourne
-from raw.raw_retours;
+from raw.raw_retours
+;
 
 
 -- responsables des zones géographiques
 create or replace table stg.stg_zone_has_responsable as
-SELECT
+select
 	"Zone géographique" "zone",
 	"Responsable régional" responsable
-from raw.raw_personnes;
+from raw.raw_personnes
+;

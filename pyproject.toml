@@ -1,10 +1,25 @@
 [project]
 name = "dbt-hypermarche"
 version = "0.1.0"
-description = "Add your description here"
+description = "Industrialisation données hypermarché 🛒 avec dbt"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dependencies = [
-    "dbt-duckdb>=1.9.4",
-    "dbt-snowflake>=1.10.2",
+    "dbt-snowflake>=1.10.3",
+    "dbt-duckdb>=1.10.0",
+    "faker>=38.2.0",
+    "polars>=1.35.2",
 ]
+
+[dependency-groups]
+dev = [
+    # "pre-commit>=4.5.0",
+    # "pre-commit-uv>=4.2.0",
+    # préférer install globale ?? -> `uv tool install pre-commit --with pre-commit-uv`
+    "ruff>=0.14.8",
+    "shandy-sqlfmt[jinjafmt]>=0.28.2",
+    "dbt-colibri>=0.2.7",
+]
+
+[tool.sqlfmt]
+exclude=["dbt/target/**/*", "dbt/dbt_packages/**/*"]

@@ -1,8 +1,12 @@
 
+# artefacts dbt
 target/
 dbt_packages/
 logs/
+
 *.db
 *.db.wal
-.user.yml
-.vscode/settings.json
+
+# artefacts projet uv / python
+.venv
+.ruff_cache

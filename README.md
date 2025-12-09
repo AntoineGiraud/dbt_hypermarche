@@ -1,118 +1,123 @@
-# Industrialisation des transformations SQL préparées dans le TD1
+# Industrialisation données hypermarché 🛒
 
-## Contexte & objectifs
+## Objectif & mission
 
-Pouvoir industrialiser, à l'aide de DBT, les transformations SQL préparées dans le TD1 sur nos données d'hypermarché.
+### 🎯 Objectif
 
-Les requêtes SQL du TD1 sont dans le dossier `input`
+Apprenez à transformer et industrialiser vos données avec **dbt** : un outil qui orchestre & rend vos requêtes SQL reproductibles, testées et documentées
 
-Etapes:
-- installation de DBT (python 3.12 non supporté actuellement)
-- transférer les req SQL du TD1 (`./input/`) dans le projet DBT
-  ```sql
-    select *
-    from {{ ref('stg_commande') }}
+### 🚀 Étapes du projet
+
+1. **Cloner & préparer votre poste** *→ cf. [Installation](#installation)*
+2. **Lancer un 1er `dbt build`** *→ comprendre et corriger les erreurs (cf. [commandes dbt](#commandes-dbt-importantes))*
+3. **Migrer** vos requêtes SQL du TD1 (`input/`) *→ 1 model = 1 .sql (sans ;) (`dbt/models/xxx/`)*
+4. **Documenter** vos tables & colonnes *→ fichiers `{_sources|_models}.yml`*
+5. **Ajouter des tests** techniques (pk, not null) & fonctionnels (règles métiers)
+6. **Explorer la documentation** et le lineage → `dbt docs generate` + `dbt docs serve`
+
+![hypermarche_flux_donnees](./images/hypermarche_flux_donnees.png)
+
+#### dbt docs catalog & lineage ([url](https://antoinegiraud.github.io/dbt_hypermarche/#!/overview?g_v=1))
+
+![dbt lineage](./images/dbt_lineage.png)
+
+#### dbt colibri column lineage view ([url](https://antoinegiraud.github.io/dbt_hypermarche/colibri))
+
+![colibri column lineage](./images/dbt_colibri_column_lineage.png)
+
+## Resources
+
+### Outils
+
+- [**dbt-core**](https://github.com/dbt-labs/dbt-core) enables data analysts and engineers to transform their data using the same practices that software engineers use to build applications.\
+  ![dbt-core](https://github.com/dbt-labs/dbt-core/raw/202cb7e51e218c7b29eb3b11ad058bd56b7739de/etc/dbt-transform.png)
+- [**git**](https://git-scm.com/install/windows) *gestion de versions*
+- [**VS Code**](https://code.visualstudio.com/) *éditeur de code*
+  - [Power User for dbt](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user)
+  - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+- [**uv**](https://github.com/astral-sh/uv) extremely fast Python package & project manager, written in rust 🦀
+- [**DuckDB**](https://duckdb.org/) analytical in-process SQL database
+- [**DBeaver**](https://dbeaver.io/) database Management Tool
+- [**dbt colibri**](https://www.colibri-data.com/) column level lineage & documentation to your dbt projects (using [SQLGlot](https://github.com/tobymao/sqlglot))
+
+### Se former à dbt & l'Analytics Engineering
+
+- Suivre le tutoriel/badge [dbt-fundamentals](https://learn.getdbt.com/courses/dbt-fundamentals-vs-code)
+- Consulter la [doc dbt](https://docs.getdbt.com/docs/introduction)
+  ex:
+  - [how we structure](https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview) our dbt projects
+  - jouer avec le projet [jaffle-shop](https://github.com/dbt-labs/jaffle_shop_duckdb) ([guide](https://docs.getdbt.com/guides/duckdb?step=3))
+- Alimenter sa veille & suivre sur LinkedIn
+  - [Bruno Lima](https://www.linkedin.com/in/brunoszdl/) → partage bcp sur dbt
+  - [Christophe Blefari](https://www.linkedin.com/in/christopheblefari/) → son regard critique sur la data ([newsletter](https://www.blef.fr/), [nao](https://getnao.io/))
+  - [Robin Conquet](https://www.linkedin.com/in/robin-conquet-3a510292/) aka [DataGen](https://www.youtube.com/@data-gen) & ses podcast stratégie data
+- Creuser plus loin
+  - Faire les [autres eLearning dbt](https://learn.getdbt.com/courses)
+  - Essayer un **quick start** dbt ?
+  - lire [Continuous integration in dbt](https://docs.getdbt.com/docs/deploy/continuous-integration) → avancé
+  - lire [Using defer in dbt](https://docs.getdbt.com/docs/cloud/about-cloud-develop-defer) → avancé
+
+### Commandes dbt importantes
+
+| Commande | Rôle |
+|----------|------|
+| `dbt ls` | Liste les modèles |
+| `dbt parse` | Vérifie syntaxe et validité |
+| `dbt compile` | Génère SQL à partir des modèles |
+| `dbt run` | Exécute les modèles (sans tests) |
+| `dbt test` | Lance uniquement les tests |
+| `dbt build` | Exécute modèles + tests |
+| `dbt build -s +stg_commande+` | Construit `stg_commande` + parent & enfants |
+| `dbt retry` | Reprendre depuis la dernière erreur (run, build, test, compile, docs...) |
+| `dbt docs generate` | Génère la documentation |
+| `dbt docs serve` | Lance un serveur web pour explorer doc & lineage |
+| `colibri generate` | Générer le lineage à la colonne |
+
+### Bonnes pratiques nommage des commit
+
+Norme [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) : `<type>(optional scope): <description>`
+
+| type | usage | exemple 💡 |
+|----------|------|------|
+| **feat** | nouvelle fonctionnalité visible | <em style="color: grey"> ajout d’auth Google</em> |
+| **fix** | correction de bug | <em style="color: grey"> pagination API</em> |
+| **docs** | changement de documentation | <em style="color: grey"> mise à jour README</em> |
+| **style** | formatage sans impact logique|  <em style="color: grey"> indentation</em> |
+| **refactor** | amélioration interne sans ajout ni bugfix | <em style="color: grey"> simplification parsing</em> |
+| **test** | ajout/modif de tests|  <em style="color: grey"> tests unitaires user</em> |
+| **chore** | maintenance/config sans impact fonctionnel |   <em style="color: grey"> mise à jour dépendances, script CI</em> |
+
+
+### Installation
+
+#### Récupérer les outils
+
+- [git](https://git-scm.com/install/windows) ou
+  `winget install --id Git.Git -e --source winget`
+  - Dire à **git** qui vous êtes
+    ```shell
+    git config --global user.name "PrenomNom"
+    git config --global user.email votresuper@email.fr
     ```
-- commencer à documenter les tables/colonnes & hypothèses prises
-- ajouter des tests fonctionnels (règles métiers particulières) & techniques (pk, not null)
-  pour confirmer nos hypothèses de modélisation
-- Pensez à consulter la page html de documentation générée pour explorer le lineage & les tables crées
-  #DataCatalog
+- [uv](https://docs.astral.sh/uv/getting-started/installation/) ou
+  `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+- [DuckDB](https://duckdb.org/install/?platform=windows&environment=cli) ou `winget install DuckDB.cli`
+- [DBeaver](https://dbeaver.io/download/) ou [windows store](https://apps.microsoft.com/detail/9pnkdr50694p?hl=fr-FR&gl=FR)
+- [VS Code](https://code.visualstudio.com/Download) ou [windows store](https://apps.microsoft.com/detail/xp9khm4bk9fz7q?hl=fr-FR&gl=FR)
 
-## Commandes dbt importantes
+#### Clone & setup local du projet
 
-- `dbt compile`
-  Voir si nos scripts sont valides
-- `dbt build`
-  Pour déployer nos scripts dans la BDD
-  équivalent de dbt run + dbt test
-- `dbt docs generate`
-  Pour préparer la documentation
-- `dbt docs serve`
-  Pour lancer un serveur web pour explorer la doc & le lineage
-- `dbt build -s +stg_commande+`
-  Pour déployer tout avant & après la table stg_commande
-
-## Installation & config manuelle de DBT
-
-- `pip install dbt-duckdb` [doc](https://github.com/duckdb/dbt-duckdb)
-- `dbt init`
-  *pour un nouveau projet ou initialiser le fichier `~/.dbt/profiles.yml` [doc](https://docs.getdbt.com/docs/configure-your-profile)*
-  *`C:\Users\zvw7159a\.dbt\profiles.yml` sur windows*
-    - exemple config duckdb
-        ``` yml
-        dbt_hypermarche:
-          target: dev
-          outputs:
-            dev:
-              type: duckdb
-              path: dbt_hypermarche.db
-              extensions: # si besoin
-                - httpfs
-                # - spatial
-              threads: 2
-        ```
-    - exemple config postgresql
-        ``` yml
-        dbt_hypermarche:
-          target: dev
-          outputs:
-            dev:
-              type: postgres
-              host: localhost
-              user: postgres
-              password: ""
-              port: 5432
-              database: postgres
-              schema: dbt_test
-        ```
-- préparer les dossier/étapes dans `models`
-  - `src` : 1 fichier `.yml` par source (ex: `src_hypermarche.yml`)
-  - `raw` : normalement, on ne gère pas trop l'ingestion avec DBT O:) car la BDD ne le permet pas souvent
-  - `stg` : schéma transitoire (parfois appelé ODS) 1 pour 1 avec les tables brutes, on y fait qq normalisations, renommages ...
-  - `dtm` : schéma final prêt pour analyse
-- préparer le fichier `dbt_project.yml`
-  - on y défini quel profil utiliser
-  - on y défini telle étape va dans tel schéma
-    par exemple:
-    ``` yml
-    models:
-      dbt_hypermarche:
-        dtm:
-          +materialized: table
-          +schema: dtm
-          +tags: [dtm]
-          # dbt va pousser les docs vers la BDD
-          +persist_docs:
-              relation: true
-              columns: true
-    ```
-- revoir le nommage par défaut des tables : `macros/generate_schema_name.sql`
-- lister les tables sources ex: `src/src_hypermarche.yml`
-  - dans Duck DB, on peut utiliser un attribut meta pour charger les données directement
-    ```yml
-    sources:
-      - name: hypermarche
-        tables:
-          - name: achats
-              meta:
-              external_location: "read_csv('input/achats.csv', AUTO_DETECT=TRUE, header=true, all_varchar=true)"
-    ```
-  - on pourra les appeler comme suit :
-    ```sql
-    select *
-    from {{ source('hypermarche', 'achats') }}
-    ```
-- commencer à transvaser nos req SQL préparées au TD1
-  - 1 fichier par table !
-  - une fois une table staging prête, on peut l'appeler comme suit :
-    ```sql
-    select *
-    from {{ ref('stg_commande') }}
-    ```
-
-### Resources
-
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+- `git clone https://github.com/AntoineGiraud/dbt_hypermarche.git`
+- `cd dbt_hypermarche` <em style="color: grey">se déplacer dans le dossier récupéré avec git</em>
+- `uv sync`
+  - télécharge **python** <em style="color: grey">si non présent</em>
+  - initialise un environnement virtuel python (venv) <em style="color: grey">si non présent</em>
+  - télécharge les dépendances / extensions python
+- `.venv/Scripts/activate.ps1` (unix `source .venv/bin/activate`)\
+  rendre **dbt** disponible dans le terminal
+- `code .` ouvrir dans VS Code le répertoire courrant
+- Initialiser le hook git `pre-commit` (cf. [📹 vidéo intro](https://youtu.be/2r4uLr8MdcA) - 5min)
+  - (option) `uv tool install pre-commit --with pre-commit-uv` : installation globale
+  - `uv run pre-commit install` : initialiser le hook git
+    - juste avec ça, sur les prochains fichiers édités, ruff sera lancé automatiquement
+  - `uv run pre-commit run --all-files` : pour traiter TOUS les fichiers
