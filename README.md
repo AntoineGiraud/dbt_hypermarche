@@ -77,13 +77,15 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
 
 Norme [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) : `<type>(optional scope): <description>`
 
-- **feat:** nouvelle fonctionnalité visible <em style="color: grey">💡 ajout d’auth Google</em>
-- **fix:** correction de bug <em style="color: grey">💡 pagination API</em>
-- **docs:** changement de documentation <em style="color: grey">💡 mise à jour README</em>
-- **style:** formatage sans impact logique <em style="color: grey">💡 indentation</em>
-- **refactor:** amélioration interne sans ajout ni bugfix <em style="color: grey">💡 simplification parsing</em>
-- **test:** ajout/modif de tests <em style="color: grey">💡 tests unitaires user</em>
-- **chore:** maintenance/config sans impact fonctionnel <em style="color: grey">💡 mise à jour dépendances, script CI</em>
+| type | usage | exemple 💡 |
+|----------|------|------|
+| **feat** | nouvelle fonctionnalité visible | <em style="color: grey"> ajout d’auth Google</em> |
+| **fix** | correction de bug | <em style="color: grey"> pagination API</em> |
+| **docs** | changement de documentation | <em style="color: grey"> mise à jour README</em> |
+| **style** | formatage sans impact logique|  <em style="color: grey"> indentation</em> |
+| **refactor** | amélioration interne sans ajout ni bugfix | <em style="color: grey"> simplification parsing</em> |
+| **test** | ajout/modif de tests|  <em style="color: grey"> tests unitaires user</em> |
+| **chore** | maintenance/config sans impact fonctionnel |   <em style="color: grey"> mise à jour dépendances, script CI</em> |
 
 ### Installation
 
