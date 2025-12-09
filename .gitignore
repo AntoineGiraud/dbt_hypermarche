@@ -8,4 +8,5 @@ logs/
 *.db.wal
 
 # artefacts projet uv / python
-.venv/
+.venv
+.ruff_cache

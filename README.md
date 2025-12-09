@@ -3,7 +3,8 @@
 ## Objectif & mission
 
 ### 🎯 Objectif
-Apprenez à transformer et industrialiser vos données avec **dbt** : un outil qui orchestre & rend vos requêtes SQL reproductibles, testées et documentées.
+
+Apprenez à transformer et industrialiser vos données avec **dbt** : un outil qui orchestre & rend vos requêtes SQL reproductibles, testées et documentées
 
 ### 🚀 Étapes du projet
 
@@ -14,7 +15,15 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
 5. **Ajouter des tests** techniques (pk, not null) & fonctionnels (règles métiers)
 6. **Explorer la documentation** et le lineage → `dbt docs generate` + `dbt docs serve`
 
-![hypermarche_flux_donnees](./hypermarche_flux_donnees.png)
+![hypermarche_flux_donnees](./images/hypermarche_flux_donnees.png)
+
+#### dbt docs catalog & lineage ([url](https://antoinegiraud.github.io/dbt_hypermarche/#!/overview?g_v=1))
+
+![dbt lineage](./images/dbt_lineage.png)
+
+#### dbt colibri column lineage view ([url](https://antoinegiraud.github.io/dbt_hypermarche/colibri))
+
+![colibri column lineage](./images/dbt_colibri_column_lineage.png)
 
 ## Resources
 
@@ -26,9 +35,10 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
 - [**VS Code**](https://code.visualstudio.com/) *éditeur de code*
   - [Power User for dbt](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user)
   - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
-- [**uv**](https://github.com/astral-sh/uv) extremely fast Python package & project manager, written in Rust.
+- [**uv**](https://github.com/astral-sh/uv) extremely fast Python package & project manager, written in rust 🦀
 - [**DuckDB**](https://duckdb.org/) analytical in-process SQL database
-- [**DBeaver**](https://dbeaver.io/) Database Management Tool
+- [**DBeaver**](https://dbeaver.io/) database Management Tool
+- [**dbt colibri**](https://www.colibri-data.com/) column level lineage & documentation to your dbt projects (using [SQLGlot](https://github.com/tobymao/sqlglot))
 
 ### Se former à dbt & l'Analytics Engineering
 
@@ -46,6 +56,34 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
   - Essayer un **quick start** dbt ?
   - lire [Continuous integration in dbt](https://docs.getdbt.com/docs/deploy/continuous-integration) → avancé
   - lire [Using defer in dbt](https://docs.getdbt.com/docs/cloud/about-cloud-develop-defer) → avancé
+
+### Commandes dbt importantes
+
+| Commande | Rôle |
+|----------|------|
+| `dbt ls` | Liste les modèles |
+| `dbt parse` | Vérifie syntaxe et validité |
+| `dbt compile` | Génère SQL à partir des modèles |
+| `dbt run` | Exécute les modèles (sans tests) |
+| `dbt test` | Lance uniquement les tests |
+| `dbt build` | Exécute modèles + tests |
+| `dbt build -s +stg_commande+` | Construit `stg_commande` + parent & enfants |
+| `dbt retry` | Reprendre depuis la dernière erreur (run, build, test, compile, docs...) |
+| `dbt docs generate` | Génère la documentation |
+| `dbt docs serve` | Lance un serveur web pour explorer doc & lineage |
+| `colibri generate` | Générer le lineage à la colonne |
+
+### Bonnes pratiques nommage des commit
+
+Norme [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) : `<type>(optional scope): <description>`
+
+- **feat:** nouvelle fonctionnalité visible <em style="color: grey">💡 ajout d’auth Google</em>
+- **fix:** correction de bug <em style="color: grey">💡 pagination API</em>
+- **docs:** changement de documentation <em style="color: grey">💡 mise à jour README</em>
+- **style:** formatage sans impact logique <em style="color: grey">💡 indentation</em>
+- **refactor:** amélioration interne sans ajout ni bugfix <em style="color: grey">💡 simplification parsing</em>
+- **test:** ajout/modif de tests <em style="color: grey">💡 tests unitaires user</em>
+- **chore:** maintenance/config sans impact fonctionnel <em style="color: grey">💡 mise à jour dépendances, script CI</em>
 
 ### Installation
 
@@ -75,17 +113,8 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
 - `.venv/Scripts/activate.ps1` (unix `source .venv/bin/activate`)\
   rendre **dbt** disponible dans le terminal
 - `code .` ouvrir dans VS Code le répertoire courrant
-
-### Commandes dbt importantes
-
-| Commande | Rôle |
-|----------|------|
-| `dbt ls` | Liste les modèles |
-| `dbt parse` | Vérifie syntaxe et validité |
-| `dbt compile` | Génère SQL à partir des modèles |
-| `dbt run` | Exécute les modèles (sans tests) |
-| `dbt test` | Lance uniquement les tests |
-| `dbt build` | Exécute modèles + tests |
-| `dbt build -s +stg_commande+` | Construit `stg_commande` + parent & enfants |
-| `dbt docs generate` | Génère la documentation |
-| `dbt docs serve` | Lance un serveur web pour explorer doc & lineage |
+- Initialiser le hook git `pre-commit` (cf. [📹 vidéo intro](https://youtu.be/2r4uLr8MdcA) - 5min)
+  - (option) `uv tool install pre-commit --with pre-commit-uv` : installation globale
+  - `uv run pre-commit install` : initialiser le hook git
+    - juste avec ça, sur les prochains fichiers édités, ruff sera lancé automatiquement
+  - `uv run pre-commit run --all-files` : pour traiter TOUS les fichiers
