@@ -3,7 +3,8 @@
 ## Objectif & mission
 
 ### 🎯 Objectif
-Apprenez à transformer et industrialiser vos données avec **dbt** : un outil qui orchestre & rend vos requêtes SQL reproductibles, testées et documentées.
+
+Apprenez à transformer et industrialiser vos données avec **dbt** : un outil qui orchestre & rend vos requêtes SQL reproductibles, testées et documentées
 
 ### 🚀 Étapes du projet
 
@@ -14,7 +15,15 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
 5. **Ajouter des tests** techniques (pk, not null) & fonctionnels (règles métiers)
 6. **Explorer la documentation** et le lineage → `dbt docs generate` + `dbt docs serve`
 
-![hypermarche_flux_donnees](./hypermarche_flux_donnees.png)
+![hypermarche_flux_donnees](./images/hypermarche_flux_donnees.png)
+
+#### dbt docs catalog & lineage ([url](https://antoinegiraud.github.io/dbt_hypermarche/#!/overview?g_v=1))
+
+![dbt lineage](./images/dbt_lineage.png)
+
+#### dbt colibri column lineage view ([url](https://antoinegiraud.github.io/dbt_hypermarche/colibri))
+
+![colibri column lineage](./images/dbt_colibri_column_lineage.png)
 
 ## Resources
 
@@ -26,9 +35,10 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
 - [**VS Code**](https://code.visualstudio.com/) *éditeur de code*
   - [Power User for dbt](https://marketplace.visualstudio.com/items?itemName=innoverio.vscode-dbt-power-user)
   - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
-- [**uv**](https://github.com/astral-sh/uv) extremely fast Python package & project manager, written in Rust.
+- [**uv**](https://github.com/astral-sh/uv) extremely fast Python package & project manager, written in rust 🦀
 - [**DuckDB**](https://duckdb.org/) analytical in-process SQL database
-- [**DBeaver**](https://dbeaver.io/) Database Management Tool
+- [**DBeaver**](https://dbeaver.io/) database Management Tool
+- [**dbt colibri**](https://www.colibri-data.com/) column level lineage & documentation to your dbt projects (using [SQLGlot](https://github.com/tobymao/sqlglot))
 
 ### Se former à dbt & l'Analytics Engineering
 
@@ -61,19 +71,19 @@ Apprenez à transformer et industrialiser vos données avec **dbt** : un outil q
 | `dbt retry` | Reprendre depuis la dernière erreur (run, build, test, compile, docs...) |
 | `dbt docs generate` | Génère la documentation |
 | `dbt docs serve` | Lance un serveur web pour explorer doc & lineage |
+| `colibri generate` | Générer le lineage à la colonne |
 
 ### Bonnes pratiques nommage des commit
 
-Format: `<type>(<scope>): <subject>`<br>
-`<scope>` is optional
+Norme [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) : `<type>(optional scope): <description>`
 
-- **chore:** add Oyster build script
-- **docs:** explain hat wobble
-- **feat:** add beta sequence
-- **fix:** remove broken confirmation message
-- **refactor:** share logic between 4d3d3d3 and flarhgunnstow
-- **style:** convert tabs to spaces
-- **test:** ensure Tayne retains clothing
+- **feat:** nouvelle fonctionnalité visible <em style="color: grey">💡 ajout d’auth Google</em>
+- **fix:** correction de bug <em style="color: grey">💡 pagination API</em>
+- **docs:** changement de documentation <em style="color: grey">💡 mise à jour README</em>
+- **style:** formatage sans impact logique <em style="color: grey">💡 indentation</em>
+- **refactor:** amélioration interne sans ajout ni bugfix <em style="color: grey">💡 simplification parsing</em>
+- **test:** ajout/modif de tests <em style="color: grey">💡 tests unitaires user</em>
+- **chore:** maintenance/config sans impact fonctionnel <em style="color: grey">💡 mise à jour dépendances, script CI</em>
 
 ### Installation
 
