@@ -5,9 +5,9 @@
     "charliermarsh.ruff",
     "mechatroner.rainbow-csv",
     "adamviola.parquet-explorer",
-
+    // git stuff
     "mhutchie.git-graph",
-
+    // dbt stuff
     "innoverio.vscode-dbt-power-user"
   ],
   "unwantedRecommendations": [

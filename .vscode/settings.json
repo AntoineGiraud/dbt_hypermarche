@@ -1,14 +1,31 @@
 {
+    "files.autoSave": "afterDelay",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.wordWrap": "on",
+    "editor.wrappingIndent": "indent",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    // "python.defaultInterpreterPath": ".\\.venv\\Scripts\\python.exe",
+    // dbt stuff
+    "dbt.enableNewLineagePanel": true,
     "files.associations": {
-        "*.sql": "jinja-sql"
+        "*.sql": "jinja-sql",
+        "*.yml": "jinja-yaml",
+        "*.sqlx": "sql",
     },
+    // formater stuff
     "[jinja-sql]": {
         "editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
         "editor.formatOnSave": true
     },
-    "dbt.enableNewLineagePanel": true,
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff",
         "editor.formatOnSave": true
-    }
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true
+    },
 }

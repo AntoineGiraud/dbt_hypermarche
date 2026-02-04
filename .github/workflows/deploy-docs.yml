@@ -1,52 +1,83 @@
-name: Deploy dbt docs & colibri to GitHub Pages
+name: CI/CD dbt_hypermarche
 
-on:
-  push:
-    branches: ["solution"]
-
+push:
+    branches: ["**"] # On lance sur toutes les branches
+  pull_request:
+    branches: ["**"]
+    
 permissions:
   contents: read
   pages: write
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  static_checks:
+    name: 🔍 Static Checks (Ruff, Trivy)
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # L'image ubuntu-latest a déjà python, on configure juste uv proprement
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+          enable-cache: true # Gère automatiquement le cache des dépendances !
+          cache-dependency-glob: "uv.lock"
+
+      - name: Sync dependencies
+        run: uv sync --frozen
+
+      - name: Run Ruff
+        run: uv run ruff check .
+
+      - name: dbt compile check ⚙️
+        run: cd dbt && uv run dbt compile
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
+
+  build_and_deploy:
+    name: 🏗️ dbt Build & Deploy
+    needs: static_checks
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/solution'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install uv
-        run: |
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+      - name: Setup uv & Python 3.13
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
 
       - name: Sync dependencies
         run: uv sync --frozen
 
       - name: Generate dbt build ⚙️
         run: cd dbt && uv run dbt build
-      - name: Generate dbt docs 📖
-        run: cd dbt && uv run dbt docs generate
-      - name: Generate dbt colibri 🐦
-        run: cd dbt && uv run colibri generate --output-dir target/colibri
+
+      - name: Generate dbt docs & colibri 📖🐦
+        run: |
+          cd dbt
+          uv run dbt docs generate
+          uv run colibri generate --output-dir target/colibri
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dbt/target
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
