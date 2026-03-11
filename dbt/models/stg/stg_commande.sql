@@ -1,8 +1,8 @@
 select
     "ID ligne" as id_ligne,
     "ID commande" as id_commande,
-    cast(to_timestamp("Date de commande", 'mm/DD/yyyy') as date) as dt_commande,
-    cast(to_timestamp("Date d'expédition", 'mm/DD/yyyy') as date) as dt_expedition,
+    cast(to_timestamp("Date de commande") as date) as dt_commande,
+    cast(to_timestamp("Date d'expédition") as date) as dt_expedition,
     "Statut commande" as priorite,
     "ID client" as id_client,
     "Nom du client" as client_nom,
