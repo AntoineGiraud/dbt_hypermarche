@@ -1,7 +1,4 @@
 {
-    "files.autoSave": "afterDelay",
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
     "editor.wordWrap": "on",
     "editor.wrappingIndent": "indent",
     "editor.multiCursorModifier": "ctrlCmd",
@@ -16,16 +13,23 @@
         "*.sqlx": "sql",
     },
     // formater stuff
+    "files.autoSave": "afterDelay",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.formatOnSave": true,
     "[jinja-sql]": {
         "editor.defaultFormatter": "innoverio.vscode-dbt-power-user",
-        "editor.formatOnSave": true
     },
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff",
-        "editor.formatOnSave": true
+        "editor.codeActionsOnSave": {
+            "source.organizeImports.ruff": "explicit"
+        },
     },
-    "[jsonc]": {
+    "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features",
-        "editor.formatOnSave": true
+    },
+    "[toml]": {
+        "editor.defaultFormatter": "tamasfe.even-better-toml"
     },
 }
