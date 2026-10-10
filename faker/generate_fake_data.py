@@ -1,7 +1,9 @@
 import random
-import polars as pl
-from faker import Faker
 from datetime import timedelta
+
+import polars as pl
+
+from faker import Faker
 
 fake = Faker("fr_FR")
 

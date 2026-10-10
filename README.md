@@ -87,9 +87,9 @@ Norme [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) : `<
 | **test** | ajout/modif de tests|  <em style="color: grey"> tests unitaires user</em> |
 | **chore** | maintenance/config sans impact fonctionnel |   <em style="color: grey"> mise à jour dépendances, script CI</em> |
 
-### Installation
+## 🚀  Installation
 
-#### Récupérer les outils
+### Récupérer les outils
 
 - [git](https://git-scm.com/install/windows) ou
   `winget install --id Git.Git -e --source winget`
@@ -115,8 +115,22 @@ Norme [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) : `<
 - `.venv/Scripts/activate.ps1` (unix `source .venv/bin/activate`)\
   rendre **dbt** disponible dans le terminal
 - `code .` ouvrir dans VS Code le répertoire courrant
-- Initialiser le hook git `pre-commit` (cf. [📹 vidéo intro](https://youtu.be/2r4uLr8MdcA) - 5min)
-  - (option) `uv tool install pre-commit --with pre-commit-uv` : installation globale
-  - `uv run pre-commit install` : initialiser le hook git
-    - juste avec ça, sur les prochains fichiers édités, ruff sera lancé automatiquement
-  - `uv run pre-commit run --all-files` : pour traiter TOUS les fichiers
+
+## 🧪 Développement
+
+Le projet utilise les standards modernes (Python >= 3.14, ruff, prek).
+
+```bash
+# Lancer les linters / formatters (Ruff)
+uv run ruff check .
+uv run ruff format .
+
+# Installer les hooks pre-commit (Prek)
+prek install -t pre-commit -t commit-msg --overwrite
+
+# Lancer manuellement les checks de qualité
+uv run prek
+
+# Lancer les vérifications de typage avec Ty
+uv run ty
+```
