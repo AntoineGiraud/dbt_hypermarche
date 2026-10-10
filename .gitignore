@@ -1,12 +1,21 @@
 
-# artefacts dbt
-target/
-dbt_packages/
-logs/
-
-*.db
-*.db.wal
-
-# artefacts projet uv / python
+# python stuff
 .venv
 .ruff_cache
+
+# dbt artefacts
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+
+# data artefacts
+*.db
+*.db.wal
+*.duckdb
+*.block
+*.tmp
+*.pbix
+
+# data folders
+input/rentals_v*
+output/*

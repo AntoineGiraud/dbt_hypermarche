@@ -87,9 +87,9 @@ Norme [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) : `<
 | **test** | ajout/modif de tests|  <em style="color: grey"> tests unitaires user</em> |
 | **chore** | maintenance/config sans impact fonctionnel |   <em style="color: grey"> mise à jour dépendances, script CI</em> |
 
-### Installation
+## 🚀  Installation
 
-#### Récupérer les outils
+### Récupérer les outils
 
 - [git](https://git-scm.com/install/windows) ou
   `winget install --id Git.Git -e --source winget`
@@ -115,12 +115,22 @@ Norme [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) : `<
 - `.venv/Scripts/activate.ps1` (unix `source .venv/bin/activate`)\
   rendre **dbt** disponible dans le terminal
 - `code .` ouvrir dans VS Code le répertoire courrant
-- S'assurer que `prek` (pre-commit en rust) est installé
-  ```bash
-  # Installer les hooks pre-commit
-  prek install --overwrite
-  # Lancer manuellement les checks de qualité (Ruff, Pyright, etc.)
-  prek
-  # idem avec les fichiers non modifiés
-  prek -a
-  ```
+
+## 🧪 Développement
+
+Le projet utilise les standards modernes (Python >= 3.14, ruff, prek).
+
+```bash
+# Lancer les linters / formatters (Ruff)
+uv run ruff check .
+uv run ruff format .
+
+# Installer les hooks pre-commit (Prek)
+prek install -t pre-commit -t commit-msg --overwrite
+
+# Lancer manuellement les checks de qualité
+uv run prek
+
+# Lancer les vérifications de typage avec Ty
+uv run ty
+```
